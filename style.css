@@ -5,11 +5,28 @@ body{
 .heading{
     font-size: 25px;
     text-align: center;
+    justify-content: space-around;
+}
+
+.header a{
+    width: 150px;
+    font-weight: bold;
+    text-align: center;
+    margin-right: 10px;
+    text-decoration: none;
+    color: #000;
+    padding-left: 2px;
+    padding-right: 2px;
+}
+
+.header a:hover{
+    color: blue;
 }
 
 .form{
     margin-top: 10%;
     height: 50px;
+    justify-content: space-around;
 }
 
 .search-form {
@@ -62,4 +79,81 @@ body{
 
 .img{
     margin: 0 7%;
+}
+
+.tableparks{
+    /* margin:20px auto; */
+    padding:12px;
+    width:580px;
+    text-align: left;
+    margin-top: 1%;
+    
+    background-color: #c5faff;
+
+}
+
+.btn{
+    background-color: #c5faff;
+    border: 3px solid #58e9f7;
+    font-weight: bolder;
+    font-size: 16px;
+}
+
+.btn:hover{
+    background-color: #58e9f7;
+}
+
+.fortext{
+    text-align: left;
+    /* font-size: 20px; */
+    font-family: 'Times New Roman', Times, serif;
+    text-decoration: none;
+    display: block;
+    line-height: normal;
+    margin-bottom: 5px;
+}
+
+.about{
+    margin-left: 30px;
+    
+}
+
+.about a{
+    font-weight: bolder;
+}
+
+.about p{
+    font-size: 20px;
+}
+
+.contact{
+    margin-left: 50px;
+    font-size: 18px;
+    width: 100%;
+    
+}
+
+.contact a{
+    margin-bottom: 5px;
+    display: flex;
+}
+
+.right {
+    position: absolute;
+    top: 8px;
+    right: 40px;
+    max-width: 50em;
+}
+
+.right label{
+    padding-right: 20px;
+}
+
+.menu{
+   
+}
+
+.menu a{
+    border: 2px solid rgb(0, 0, 0);
+    background-color: rgb(0, 255, 0);
 }
