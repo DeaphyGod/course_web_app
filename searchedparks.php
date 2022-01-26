@@ -23,55 +23,26 @@ elseif(!$result1 || mysqli_num_rows($result1) == 0){
     $content .= '<h2>По вашему запросу '.$_POST["request"].' не было найдено велосипедных дорожек.</h2> ';
 }
 
-
-if(isset($session_user) && $session_user != ""){
-    while($arr = mysqli_fetch_assoc($result)){
-        $name = $arr["Name"];
-        $district = $arr["District"];
-        $address = $arr["Address"];
-        $phone =  explode(":", $arr["ObjectOperOrgPhone"]);
-        $content .= '
-        <div class="tableparks">
-        
-        <table>
-            <tr>    
-                <form  action = "searchpark.php" method = "POST"> 
-                    
-                    <td colspan="2"><button class = "btn">'.$name.' </button> </td>
-                    <input hidden value="'.$arr["global_id"].'" type="text" name="id">
-                    <input hidden value="'.$_POST["request"].'" type="text" name="request1">
-                </form>
-            </tr>
-            <tr>
-                <td style="width: 70px;">Район</td>
-                <td>'.$district.'</td>
-            </tr>
-            <tr>
-                <td style="width: 70px;">Адрес</td>
-                <td>'.$address.'</td>
-            </tr>
-            <tr>
-                <td style="width: 70px;">Телефон</td>
-                <td> +7 '.$phone[1].'</td>
-            </tr>
-        </table>
-    </div>
-        ';
-    }
-    while($arr1 = mysqli_fetch_assoc($result1)){
-        $type = trim(trim($arr1["Type"], "["), "]");
-        $district1 = $arr1["District"];
-        $address1 = $arr1["Location"];
-        $phone1 =  $arr1["ObjectOperOrgPhone"];
-        
-        $content .= '
-        <div class="tableparks">
-        <table>
+if(empty($_POST["request"])){
+    $content = '<h2>Вы не ввели запрос в строку поиска. </h2> '; 
+}
+else{
+    if(isset($session_user) && $session_user != ""){
+        while($arr = mysqli_fetch_assoc($result)){
+            $name = $arr["Name"];
+            $district = $arr["District"];
+            $address = $arr["Address"];
+            $phone =  explode(":", $arr["ObjectOperOrgPhone"]);
+            $content .= '
+            <div class="tableparks">
+            
+            <table>
                 <tr>    
-                    <form  action = "searchpath.php" method = "POST"> 
-                        <td colspan="2"><button class = "btn">'.$type.' </button> </td>
-                        <input hidden value="'.$arr1["global_id"].'" type="text" name="id1">
-                        <input hidden value="'.$_POST["request"].'" type="text" name="request2">
+                    <form  action = "searchpark.php" method = "POST"> 
+                        
+                        <td colspan="2"><button class = "btn">'.$name.' </button> </td>
+                        <input hidden value="'.$arr["global_id"].'" type="text" name="id">
+                        <input hidden value="'.$_POST["request"].'" type="text" name="request1">
                     </form>
                 </tr>
                 <tr>
@@ -84,53 +55,56 @@ if(isset($session_user) && $session_user != ""){
                 </tr>
                 <tr>
                     <td style="width: 70px;">Телефон</td>
-                    <td> +7 '.$phone.'</td>
+                    <td> +7 '.$phone[1].'</td>
                 </tr>
             </table>
         </div>
-    ';
-    }
-}
-else{
-    while($arr = mysqli_fetch_assoc($result)){
-        $name = $arr["Name"];
-        $district = $arr["District"];
-        $address = $arr["Address"];
-        $phone =  explode(":", $arr["ObjectOperOrgPhone"]);
-        $content .= '
-        <div class="tableparks">
-        <table>
-            <tr>
-                <td colspan="2">'.$name.'</td>
-            </tr>
-            <tr>
-                <td style="width: 70px;">Район</td>
-                <td>'.$district.'</td>
-            </tr>
-            <tr>
-                <td style="width: 70px;">Адрес</td>
-                <td>'.$address.'</td>
-            </tr>
-            <tr>
-                <td style="width: 70px;">Телефон</td>
-                <td> +7 '.$phone[1].'</td>
-            </tr>
-        </table>
-    </div>
+            ';
+        }
+        while($arr1 = mysqli_fetch_assoc($result1)){
+            $type = trim(trim($arr1["Type"], "["), "]");
+            $district1 = $arr1["District"];
+            $address1 = $arr1["Location"];
+            $phone1 =  $arr1["ObjectOperOrgPhone"];
+            
+            $content .= '
+            <div class="tableparks">
+            <table>
+                    <tr>    
+                        <form  action = "searchpath.php" method = "POST"> 
+                            <td colspan="2"><button class = "btn">'.$type.' </button> </td>
+                            <input hidden value="'.$arr1["global_id"].'" type="text" name="id1">
+                            <input hidden value="'.$_POST["request"].'" type="text" name="request2">
+                        </form>
+                    </tr>
+                    <tr>
+                        <td style="width: 70px;">Район</td>
+                        <td>'.$district.'</td>
+                    </tr>
+                    <tr>
+                        <td style="width: 70px;">Адрес</td>
+                        <td>'.$address.'</td>
+                    </tr>
+                    <tr>
+                        <td style="width: 70px;">Телефон</td>
+                        <td> +7 '.$phone.'</td>
+                    </tr>
+                </table>
+            </div>
         ';
+        }
     }
-
-    while($arr1 = mysqli_fetch_assoc($result1)){
-        $type = trim(trim($arr1["Type"], "["), "]");
-        $district1 = $arr1["District"];
-        $address1 = $arr1["Location"];
-        $phone1 =  $arr1["ObjectOperOrgPhone"];
-        
-        $content .= '
-        <div class="tableparks">
-        <table>
-                <tr>    
-                    <td colspan="2">'.$type.'</td>
+    else{
+        while($arr = mysqli_fetch_assoc($result)){
+            $name = $arr["Name"];
+            $district = $arr["District"];
+            $address = $arr["Address"];
+            $phone =  explode(":", $arr["ObjectOperOrgPhone"]);
+            $content .= '
+            <div class="tableparks">
+            <table>
+                <tr>
+                    <td colspan="2">'.$name.'</td>
                 </tr>
                 <tr>
                     <td style="width: 70px;">Район</td>
@@ -142,23 +116,44 @@ else{
                 </tr>
                 <tr>
                     <td style="width: 70px;">Телефон</td>
-                    <td> +7 '.$phone.'</td>
+                    <td> +7 '.$phone[1].'</td>
                 </tr>
             </table>
-    </div>
-        ';
+        </div>
+            ';
+        }
+    
+        while($arr1 = mysqli_fetch_assoc($result1)){
+            $type = trim(trim($arr1["Type"], "["), "]");
+            $district1 = $arr1["District"];
+            $address1 = $arr1["Location"];
+            $phone1 =  $arr1["ObjectOperOrgPhone"];
+            
+            $content .= '
+            <div class="tableparks">
+            <table>
+                    <tr>    
+                        <td colspan="2">'.$type.'</td>
+                    </tr>
+                    <tr>
+                        <td style="width: 70px;">Район</td>
+                        <td>'.$district.'</td>
+                    </tr>
+                    <tr>
+                        <td style="width: 70px;">Адрес</td>
+                        <td>'.$address.'</td>
+                    </tr>
+                    <tr>
+                        <td style="width: 70px;">Телефон</td>
+                        <td> +7 '.$phone.'</td>
+                    </tr>
+                </table>
+        </div>
+            ';
+        }
     }
 }
-
-
-
 
 require("template.php");
 
 ?>
-
-
-
-
-
-

@@ -2,10 +2,6 @@
 require("connectdb.php");
 session_start();
 
-// unset($_SESSION['name']);
-// unset($_SESSION['login']);
-// unset($_SESSION['password']);
-
 $name = htmlspecialchars(trim($_POST['name']));
 $login = htmlspecialchars(trim($_POST['login']));
 $pass = htmlspecialchars(trim($_POST['password']));
@@ -13,10 +9,6 @@ $pass = htmlspecialchars(trim($_POST['password']));
 $_SESSION['name'] = $name;
 $_SESSION['login'] = $login;
 $_SESSION['password'] = $pass;
-
-// $name = $_POST['name'];
-// $login = $_POST['login'];
-// $pass = $_POST['password'];
 
 if (!empty($_POST)){
     if(trim($name) == ""){
@@ -36,7 +28,7 @@ if (!empty($_POST)){
 
     else{
     $result = mysqli_query($connect, "SELECT * FROM users WHERE login=\"".$_POST['login']."\"");
-    //echo mysqli_num_rows($result);
+    
     if(mysqli_num_rows($result) == 0){
         mysqli_query($connect, "INSERT INTO users (name, login, password) VALUES (
             \"".$_POST["name"]."\", 
@@ -45,9 +37,9 @@ if (!empty($_POST)){
             )"
         );
     }
-    //$id = mysqli_insert_id($connect);
-    header("Location: main.php"); // тут у тебя должен быть индекс
-}
+    
+    header("Location: authorization.php");
+    }
 }
 
 $title = "Регистрация";

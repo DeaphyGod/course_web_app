@@ -4,7 +4,7 @@ $title = "Курсовая работа";
 
 $content = "
 <div class=\"form\">
-    <h1 class = \"heading\">Введите название района, в котором Вы хотели бы<br>найти велосипедные дорожки и станции проката.</h1>
+    <h1 class = \"heading\">Введите название района, в котором Вы хотели бы<br>найти велосипедные дорожки и велопарковки.</h1>
 <div class=\"search-form\"> 
     <form action=\"searchedparks.php\" method=\"POST\" class=\"container\">
         
@@ -15,7 +15,6 @@ $content = "
 </div>
 ";
 
-
 require("template.php");
 ?>
-<!-- <input placeholder=\"Введите название района...\" type=\"text\" class=\"search-field\" value=".$_POST["request"]."> -->
+

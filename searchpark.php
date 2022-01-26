@@ -1,7 +1,6 @@
 <?php
 require("connectdb.php");
 require("session.php");
-// $connect = mysqli_connect("std-mysql.ist.mospolytech.ru", "std_1525_course", "12345678", "std_1525_course");
 
 $result = mysqli_query($connect, "SELECT * FROM parkings WHERE global_id = '".$_POST["id"]."' ");
 $arr = mysqli_fetch_assoc($result);
@@ -56,4 +55,3 @@ $content = "
         
 require("template.php");
 ?><
-    <!-- input type=\"text\" class=\"search-field\" for=\"request\"> -->
